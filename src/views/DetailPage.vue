@@ -1,11 +1,11 @@
 <template>
     <div class="flex flex-col">
-        <div class="flex flex-row justify-end">
-            <p class="rounded-full bg-black flex justify-center items-center m-2 w-10 h-10 text-white p-3 fixed top-0"
+        <div class="flex flex-row justify-end z-10">
+            <p class="rounded-full bg-white flex justify-center items-center m-2 w-8 h-8 text-black p-3 fixed top-0"
                 @click=closePage()>X</p>
         </div>
         <div class="border-2 rounded-md flex flex-col justify-center items-center gap-4 p-5 pt-0">
-                <CardContent :cardFooterClass = 'cardFooterClass' :cardHeaderClass = 'cardHeaderClass'/>
+                <CardContent :cardFooterClass = 'cardFooterClass' :displayContent = 'displayContent'/>
             <div class="flex flex-col gap-3" v-html="html"></div>
             <div class="flex w-screen px-6">
                 <img class="w-full h-[300px] object-cover" :src="data?.content.mainImage" />
@@ -38,7 +38,7 @@ const router = useRouter()
 const store = useFetchData()
 const data = computed(() => store.naruto)
 const cardFooterClass = 'flex justify-between items-center p-2 w-full sm:w-[400px]';
-const cardHeaderClass = 'flex w-screen mt-0'
+const displayContent = true
 const closePage = () => {
     router.back()
 }

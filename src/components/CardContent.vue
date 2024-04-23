@@ -1,5 +1,12 @@
 <template>
-    <div :class="props.cardHeaderClass">
+    <div class="flex w-screen mt-0" v-if="props.displayContent">
+        <div class="absolute h-full w-2/3 flex flex-col z-10">
+            <span class="uppercase font-medium text-white">Major Update</span>
+            <span class="text-3xl text-white drop-shadow-md font-semibold">Only I can Call My Dream Stupid</span>
+        </div>
+        <img class="w-full h-[300px] object-cover brightness-75" :src="data?.content.thumbNailImage" />
+    </div>
+    <div :class="props.cardHeaderClass" v-if="!props.displayContent">
         <img class="w-full h-[300px] object-cover" :src="data?.content.thumbNailImage" @click="openPage()" />
     </div>
     <div :class="props.cardFooterClass">
@@ -21,7 +28,8 @@ import { useFetchData } from '../stores/index.js'
 import { computed } from 'vue';
 const props = defineProps({
     cardFooterClass: String,
-    cardHeaderClass: String,
+    cardHeaderClass: { type: String, required: false },
+    displayContent: { type: Boolean, default: false }
 })
 const router = useRouter()
 const store = useFetchData()
